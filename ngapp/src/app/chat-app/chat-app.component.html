@@ -1,4 +1,11 @@
 <nav>
   <button routerLink="/home">back to home</button>
 </nav>
-<p>chat-app works!</p>
+<app-post-editor
+  (onPost)="onPost($event)"
+>
+</app-post-editor>
+<app-post-list
+  [posts]="posts"
+  >
+</app-post-list>

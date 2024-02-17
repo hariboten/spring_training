@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  app:
+    build:
+      context: bootrun
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    volumes:
+      - .:/app
+  ngapp:
+    build:
+      context: ngapp
+      dockerfile: Dockerfile
+    ports:
+      - "4200:4200"
+    volumes:
+      - ./ngapp:/ngapp
+  nginx:
+    image: nginx:latest
+    ports:
+      - "443:443"
+    volumes:
+      - ./conf/nginx/:/etc/nginx/
+    links:
+      - app
+      - ngapp
